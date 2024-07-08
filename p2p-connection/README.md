@@ -9,7 +9,7 @@ This document describes the Peer-to-Peer (P2P) connection component of our decen
 
 To set up the P2P connection component, execute the following commands in your terminal:
 
-```
+```bash
 cd path/to/p2p-connection
 npm install
 ```
@@ -27,57 +27,57 @@ let peerConnection = createPeerConnection();
 startChatRoom(peerConnection);
 ```
 
-### Functions
+## Functions
 
-#### `createPeerConnection()`
+### createPeerConnection()
 
-- **Description**: Initializes and returns a new RTCPeerConnection object configured with default ICE servers.
-- **Parameters**: None.
-- **Returns**: A new RTCPeerConnection object.
+- **Description:** Initializes and returns a new `RTCPeerConnection` object configured with default ICE servers.
+- **Parameters:** None
+- **Returns:** A new `RTCPeerConnection` object
 
-#### `startChatRoom(peerConnection)`
+### startChatRoom(peerConnection)
 
-- **Description**: Generates an offer for a new chat room, sets the local description, and logs the offer to the console.
-- **Parameters**:
-  - `peerConnection`: The RTCPeerConnection object.
-- **Returns**: None.
+- **Description:** Generates an offer for a new chat room, sets the local description, and logs the offer to the console.
+- **Parameters:**
+  - `peerConnection`: The `RTCPeerConnection` object
+- **Returns:** None
 
-#### `joinChatRoom(peerConnection, offer)`
+### joinChatRoom(peerConnection, offer)
 
-- **Description**: Accepts an offer, sets the remote description, creates an answer, sets the local description for the answer, and completes the connection setup.
-- **Parameters**:
-  - `peerConnection`: The RTCPeerConnection object.
-  - `offer`: Offer description as an RTCSessionDescription object.
-- **Returns**: None.
+- **Description:** Accepts an offer, sets the remote description, creates an answer, sets the local description for the answer, and completes the connection setup.
+- **Parameters:**
+  - `peerConnection`: The `RTCPeerConnection` object
+  - `offer`: Offer description as an `RTCSessionDescription` object
+- **Returns:** None
 
 ## API Documentation
 
-### `createPeerConnection()`
+### createPeerConnection()
 
-- **Description**: Initializes a new RTCPeerConnection.
-- **Parameters**: None.
-- **Returns**: A new RTCPeerConnection object.
+- **Description:** Initializes a new `RTCPeerConnection`.
+- **Parameters:** None
+- **Returns:** A new `RTCPeerConnection` object
 
-### `startChatRoom(peerConnection)`
+### startChatRoom(peerConnection)
 
-- **Description**: Starts a chat room by creating an offer.
-- **Parameters**:
-  - `peerConnection`: The RTCPeerConnection object.
-- **Returns**: None.
+- **Description:** Starts a chat room by creating an offer.
+- **Parameters:**
+  - `peerConnection`: The `RTCPeerConnection` object
+- **Returns:** None
 
-### `joinChatRoom(peerConnection, offer)`
+### joinChatRoom(peerConnection, offer)
 
-- **Description**: Joins an existing chat room.
-- **Parameters**:
-  - `peerConnection`: The RTCPeerConnection object.
-  - `offer`: Offer description as an RTCSessionDescription object.
-- **Returns**: None.
+- **Description:** Joins an existing chat room.
+- **Parameters:**
+  - `peerConnection`: The `RTCPeerConnection` object
+  - `offer`: Offer description as an `RTCSessionDescription` object
+- **Returns:** None
 
 ## Testing
 
 To test the functionality of the P2P connection component, run the following command:
 
-```
+```bash
 npm test
 ```
 
