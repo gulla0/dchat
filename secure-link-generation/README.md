@@ -1,4 +1,3 @@
-```markdown
 # Link Generator Module
 
 ## Overview
@@ -45,7 +44,7 @@ The `linkGenerator.js` file contains the `generateSecureLink` function, responsi
   }
 
   module.exports = { generateSecureLink };
-  ```
+
 
 ## Testing
 
