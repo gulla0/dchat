@@ -1,6 +1,4 @@
-### README.md for Message Handling Component
 
-```markdown
 # Message Handling Component
 
 ## Introduction
@@ -101,4 +99,3 @@ This command runs the Jest test suite defined in `messageHandler.test.js`, ensur
 ## Conclusion
 
 This README provides a comprehensive guide to the Message Handling component of the decentralized chat application. It details how messages are handled, sent, and received through WebRTC Data Channels, ensuring efficient and secure communication between peers.
-```
