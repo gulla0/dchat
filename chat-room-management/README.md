@@ -1,6 +1,3 @@
-### README.md for Chat Room Management
-
-```markdown
 # Chat Room Management
 
 ## Overview
