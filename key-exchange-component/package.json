@@ -1,7 +1,7 @@
 {
   "name": "key-exchange-component",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Overview",
   "main": "index.js",
   "scripts": {
     "test": "jest"
