@@ -1,4 +1,3 @@
-```markdown
 # Key Management System
 
 ## Overview
@@ -25,7 +24,7 @@ This module includes several functions essential for cryptographic operations re
           privateKeyEncoding: { type: 'pkcs8', format: 'pem' }
       });
   }
-  ```
+  
 - **Description**: This function generates a public-private key pair. The public key can be shared with anyone, while the private key must be kept secure.
 
 ##### `generateAESKey()`
