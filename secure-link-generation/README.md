@@ -1,3 +1,4 @@
+```
 # Link Generator Module
 
 ## Overview
@@ -79,7 +80,7 @@ The test suite for `linkGenerator.js` ensures that the `generateSecureLink` func
         expect(keyManagement.encryptAESKey).toHaveBeenCalledWith(aesKey, publicKey);
         expect(keyManagement.encodeKeyForURL).toHaveBeenCalledWith(encryptedKey);
     });
-    ```
+   
 
 - **Error Handling Test**
   - **Objective**: Ensure that errors during the encryption and encoding processes are handled gracefully.
@@ -96,7 +97,7 @@ The test suite for `linkGenerator.js` ensures that the `generateSecureLink` func
         });
         expect(() => generateSecureLink(publicKey)).toThrow('Encoding failed');
     });
-    ```
+
 
 ### Conclusion
 
