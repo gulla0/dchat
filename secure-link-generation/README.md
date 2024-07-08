@@ -1,9 +1,8 @@
-```
 # Link Generator Module
 
 ## Overview
 
-The Link Generator module is a key component of the decentralized chat application, tasked with generating secure, encrypted links that embed an AES key. These links are crucial for initiating encrypted chat sessions, ensuring secure communication between participants.
+The Link Generator module is a vital component of a decentralized chat application, responsible for creating secure, encrypted links that incorporate an AES key. These links are essential for initiating encrypted chat sessions, ensuring that communications between participants remain secure.
 
 ## Module Description
 
@@ -11,22 +10,22 @@ The Link Generator module is a key component of the decentralized chat applicati
 
 #### Functionality
 
-The `linkGenerator.js` file contains the `generateSecureLink` function, responsible for creating secure links for chat rooms.
+This file contains the `generateSecureLink` function, which is responsible for creating secure links for chat rooms.
 
 #### `generateSecureLink(publicKey)`
 
 - **Purpose**: 
-  - Generates a secure chat room link that embeds an encrypted and encoded AES key. This link is crucial for starting secure chat sessions, ensuring that all messages within the session are encrypted using the AES key.
-  
+  - Generates a secure chat room link containing an encrypted and encoded AES key, critical for initiating secure chat sessions and encrypting all messages within the session.
+
 - **Procedure**:
   1. **Token Generation**: 
-     - Utilizes `crypto.randomBytes` to generate a random 16-byte hexadecimal token, serving as a unique identifier for the chat session.
+     - Uses `crypto.randomBytes` to generate a random 16-byte hexadecimal token, serving as a unique identifier for the chat session.
   2. **AES Key Generation**: 
-     - Generates a random 32-byte AES key to encrypt chat messages.
+     - Generates a random 32-byte AES key for message encryption.
   3. **AES Key Encryption**: 
-     - Encrypts the AES key using the provided RSA public key, ensuring that only the holder of the corresponding RSA private key can decrypt it.
+     - Encrypts the AES key using the provided RSA public key to ensure only the holder of the corresponding RSA private key can decrypt it.
   4. **Key Encoding**: 
-     - Encodes the encrypted AES key in base64 format, making it suitable for URL inclusion.
+     - Encodes the encrypted AES key in base64 format for URL inclusion.
   5. **Link Construction**: 
      - Constructs the final chat link by appending the encoded AES key as a query parameter.
 
@@ -45,7 +44,7 @@ The `linkGenerator.js` file contains the `generateSecureLink` function, responsi
   }
 
   module.exports = { generateSecureLink };
-
+  ```
 
 ## Testing
 
@@ -53,20 +52,20 @@ The `linkGenerator.js` file contains the `generateSecureLink` function, responsi
 
 #### Overview
 
-The test suite for `linkGenerator.js` ensures that the `generateSecureLink` function performs as expected, correctly handling both successful operations and potential errors.
+This test suite verifies that the `generateSecureLink` function works correctly, handling both successful operations and potential errors.
 
 #### Test Setup
 
 - **Mocking Dependencies**: 
-  - The `keyManagement` functions `encryptAESKey` and `encodeKeyForURL` are mocked to isolate the link generation logic for testing.
+  - Functions `encryptAESKey` and `encodeKeyForURL` from `keyManagement` are mocked to focus testing on the link generation process.
 
 - **Variable Setup**: 
-  - A fixed AES key is generated before all tests to ensure consistency.
+  - A fixed AES key is used in all tests to maintain consistency.
 
 #### Test Cases
 
 - **Secure Link Generation Test**
-  - **Objective**: Confirm that the `generateSecureLink` function generates a correctly formatted secure link that contains the encoded AES key.
+  - **Objective**: Verify that the `generateSecureLink` function produces a correctly formatted secure link containing the encoded AES key.
   - **Implementation**:
     ```javascript
     it('should generate a secure link containing the AES key', () => {
@@ -80,10 +79,10 @@ The test suite for `linkGenerator.js` ensures that the `generateSecureLink` func
         expect(keyManagement.encryptAESKey).toHaveBeenCalledWith(aesKey, publicKey);
         expect(keyManagement.encodeKeyForURL).toHaveBeenCalledWith(encryptedKey);
     });
-   
+    ```
 
 - **Error Handling Test**
-  - **Objective**: Ensure that errors during the encryption and encoding processes are handled gracefully.
+  - **Objective**: Test the error handling for failures during the encryption and encoding processes.
   - **Implementation**:
     ```javascript
     it('should handle errors in key encryption and encoding gracefully', () => {
@@ -97,9 +96,8 @@ The test suite for `linkGenerator.js` ensures that the `generateSecureLink` func
         });
         expect(() => generateSecureLink(publicKey)).toThrow('Encoding failed');
     });
-
+    ```
 
 ### Conclusion
 
-The Link Generator module plays a critical role in the decentralized chat application by providing secure and encrypted access to chat sessions. Its ability to generate links embedding AES keys ensures that all communication within a session is secured through robust encryption, protecting against unauthorized access and maintaining the privacy of the communication.
-```
+The Link Generator module is critical in providing secure and encrypted access to chat sessions in the decentralized chat application. By embedding AES keys in generated links, it ensures robust encryption and privacy of communications.
