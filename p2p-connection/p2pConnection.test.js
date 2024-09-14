@@ -1,9 +1,10 @@
-const { createPeerConnection, startChatRoom, joinChatRoom } = require('./p2pConnection');
+const { createPeerConnection, startChatRoom, joinChatRoom, handleDataChannel } = require('./p2pConnection');
 
 global.RTCPeerConnection = function(configuration) {
     this.iceConnectionState = 'new';
     this.localDescription = null;
     this.remoteDescription = null;
+    this.dataChannel = null;
 
     this.createOffer = jest.fn().mockImplementation(() => {
         const offer = { type: 'offer', sdp: 'dummy sdp' };
@@ -24,7 +25,13 @@ global.RTCPeerConnection = function(configuration) {
         return Promise.resolve();
     });
 
+    this.createDataChannel = jest.fn().mockImplementation(label => {
+        this.dataChannel = { label, onmessage: null };
+        return this.dataChannel;
+    });
+
     this.onicecandidate = null;
+    this.ondatachannel = null;
     this.addIceCandidate = jest.fn().mockResolvedValue();
 };
 
@@ -41,19 +48,33 @@ describe('PeerConnection', () => {
 
     test('should generate offer for chat room', async () => {
         const peerConnection = createPeerConnection();
-        await startChatRoom(peerConnection);
+        const dataChannel = startChatRoom(peerConnection);
         expect(peerConnection.createOffer).toHaveBeenCalled();
         expect(peerConnection.localDescription).toEqual({ type: 'offer', sdp: 'dummy sdp' });
+        expect(dataChannel).toBeDefined();
+        expect(dataChannel.label).toBe('chat');
     });
 
     test('should accept offer and generate answer', async () => {
         const hostPeerConnection = createPeerConnection();
-        await startChatRoom(hostPeerConnection);
+        startChatRoom(hostPeerConnection);
 
         const guestPeerConnection = createPeerConnection();
         await joinChatRoom(guestPeerConnection, { type: 'offer', sdp: 'dummy sdp' });
         expect(guestPeerConnection.setRemoteDescription).toHaveBeenCalledWith({ type: 'offer', sdp: 'dummy sdp' });
         expect(guestPeerConnection.createAnswer).toHaveBeenCalled();
         expect(guestPeerConnection.localDescription).toEqual({ type: 'answer', sdp: 'dummy sdp' });
+    });
+
+    test('should handle data channel messages', done => {
+        const peerConnection = createPeerConnection();
+        handleDataChannel(peerConnection, event => {
+            expect(event.data).toBe('Hello, peer!');
+            done();
+        });
+
+        const dataChannelEvent = { channel: { onmessage: null } };
+        peerConnection.ondatachannel(dataChannelEvent);
+        dataChannelEvent.channel.onmessage({ data: 'Hello, peer!' });
     });
 });

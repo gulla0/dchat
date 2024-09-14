@@ -1,8 +1,13 @@
 // roomManagement.js
 function closeRoom(peerConnection) {
     if (peerConnection && peerConnection.close) {
+        // Optionally, notify the other user before closing
+        if (peerConnection.dataChannel && peerConnection.dataChannel.readyState === 'open') {
+            peerConnection.dataChannel.send(JSON.stringify({ type: 'chat-closed' }));
+        }
+
         peerConnection.close();
-        console.log("Room has been closed by the host.");
+        console.log("Chat has been closed.");
     }
 }
 

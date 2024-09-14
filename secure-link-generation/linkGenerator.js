@@ -1,7 +1,7 @@
 // linkGenerator.js
 
 const crypto = require('crypto');
-const { encryptAESKey, encodeKeyForURL } = require('./keyManagement');
+const { encryptAESKey, encodeKeyForURL } = require('../key-exchange-component/keyManagement');
 
 function generateSecureLink(publicKey) {
     const token = crypto.randomBytes(16).toString('hex'); // Secure token for the room
